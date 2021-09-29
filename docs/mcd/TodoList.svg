@@ -1,0 +1,53 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="388" height="126" view_box="0 0 388 126"
+xmlns="http://www.w3.org/2000/svg"
+xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.3.7 le Wed, 29 Sep 2021 07:56:51</desc>
+
+<rect id="frame" x="0" y="0" width="388" height="126" fill="#fefeec" stroke="none" stroke-width="0"/>
+
+<!-- Association is tagges as -->
+<line x1="53" y1="63" x2="183" y2="63" stroke="#060100" stroke-width="1.5"/>
+<text x="103" y="80.0" fill="#060100" font-family="Arial" font-size="12">1,1</text>
+<line x1="324" y1="63" x2="183" y2="63" stroke="#060100" stroke-width="1.5"/>
+<text x="242" y="80.0" fill="#060100" font-family="Arial" font-size="12">0,N</text>
+<g id="association-is tagges as">
+	<path d="M 222 35 a 14 14 90 0 1 14 14 V 62 h -106 V 49 a 14 14 90 0 1 14 -14" fill="#081a84" stroke="#081a84" stroke-width="0"/>
+	<path d="M 236 62.0 v 15 a 14 14 90 0 1 -14 14 H 144 a 14 14 90 0 1 -14 -14 V 62.0 H 106" fill="#fefeec" stroke="#fefeec" stroke-width="0"/>
+	<rect x="130" y="35" width="106" height="56" fill="none" rx="14" stroke="#060100" stroke-width="3"/>
+	<line x1="130" y1="62" x2="236" y2="62" stroke="#060100" stroke-width="1.5"/>
+	<text x="139" y="55.3" fill="#fefeec" font-family="Arial Black" font-size="13">is tagges as</text>
+</g>
+
+<!-- Entity CATEGORY -->
+<g id="entity-CATEGORY">
+	<g id="frame-CATEGORY">
+		<rect x="269" y="27" width="110" height="28" fill="#c6281b" stroke="#c6281b" stroke-width="0"/>
+		<rect x="269" y="55.0" width="110" height="44" fill="#fced5f" stroke="#fced5f" stroke-width="0"/>
+		<rect x="269" y="27" width="110" height="72" fill="none" stroke="#060100" stroke-width="3"/>
+		<line x1="269" y1="55" x2="379" y2="55" stroke="#060100" stroke-width="1.5"/>
+	</g>
+	<text x="283" y="47.3" fill="#fefeec" font-family="Arial Black" font-size="13">CATEGORY</text>
+	<text x="277" y="71.2" fill="#060100" font-family="Arial" font-size="14">category code</text>
+	<line x1="277" y1="74" x2="370" y2="74" stroke="#060100" stroke-width="1.2"/>
+	<text x="277" y="89.2" fill="#060100" font-family="Arial" font-size="14">name</text>
+</g>
+
+<!-- Entity TASK -->
+<g id="entity-TASK">
+	<g id="frame-TASK">
+		<rect x="9" y="9" width="88" height="28" fill="#c6281b" stroke="#c6281b" stroke-width="0"/>
+		<rect x="9" y="37.0" width="88" height="80" fill="#fced5f" stroke="#fced5f" stroke-width="0"/>
+		<rect x="9" y="9" width="88" height="108" fill="none" stroke="#060100" stroke-width="3"/>
+		<line x1="9" y1="37" x2="97" y2="37" stroke="#060100" stroke-width="1.5"/>
+	</g>
+	<text x="32" y="29.3" fill="#fefeec" font-family="Arial Black" font-size="13">TASK</text>
+	<text x="17" y="53.2" fill="#060100" font-family="Arial" font-size="14">task code</text>
+	<line x1="17" y1="56" x2="81" y2="56" stroke="#060100" stroke-width="1.2"/>
+	<text x="17" y="71.2" fill="#060100" font-family="Arial" font-size="14">title</text>
+	<text x="17" y="89.2" fill="#060100" font-family="Arial" font-size="14">completion</text>
+	<text x="17" y="107.2" fill="#060100" font-family="Arial" font-size="14">status</text>
+</g>
+</svg>
