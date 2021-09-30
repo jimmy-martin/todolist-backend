@@ -19,6 +19,12 @@ $router->get(
     ]
 );
 
+
+// -----------------------------------------
+// CATEGORIES
+// -----------------------------------------
+
+
 $router->get(
     '/categories',
     [
@@ -32,5 +38,27 @@ $router->get(
     [
         'uses' => 'CategoryController@item',
         'as'   => 'category-item'
+    ]
+);
+
+
+// -----------------------------------------
+// TASKS
+// -----------------------------------------
+
+
+$router->get(
+    '/tasks',
+    [
+        'uses' => 'TaskController@list',
+        'as'   => 'task-list'
+    ]
+);
+
+$router->get(
+    '/tasks/{id}',
+    [
+        'uses' => 'TaskController@item',
+        'as'   => 'task-item'
     ]
 );
