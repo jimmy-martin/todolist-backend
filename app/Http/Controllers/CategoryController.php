@@ -2,34 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Symfony\Component\VarDumper\Cloner\Data;
 
 class CategoryController extends Controller
 {
     public function list()
     {
-        $categoriesList = [
-            1 => [
-                'id' => 1,
-                'name' => 'Chemin vers O\'clock',
-                'status' => 1
-            ],
-            2 => [
-                'id' => 2,
-                'name' => 'Courses',
-                'status' => 1
-            ],
-            3 => [
-                'id' => 3,
-                'name' => 'O\'clock',
-                'status' => 1
-            ],
-            4 => [
-                'id' => 4,
-                'name' => 'Titre Professionnel',
-                'status' => 1
-            ]
-        ];
+        // grâce à l'ORM Eloquent, je peux récupérer toutes mes catégories via la méthode all()
+        $categoriesList = Category::all();
 
         // dd permet de dumper une variable et de stopper le code juste après
         // dd(response());
@@ -39,34 +20,14 @@ class CategoryController extends Controller
 
     public function item(int $id)
     {
-        $categoriesList = [
-            1 => [
-                'id' => 1,
-                'name' => 'Chemin vers O\'clock',
-                'status' => 1
-            ],
-            2 => [
-                'id' => 2,
-                'name' => 'Courses',
-                'status' => 1
-            ],
-            3 => [
-                'id' => 3,
-                'name' => 'O\'clock',
-                'status' => 1
-            ],
-            4 => [
-                'id' => 4,
-                'name' => 'Titre Professionnel',
-                'status' => 1
-            ]
-        ];
+        $category = Category::find($id);
+        // dd($category);
 
-        if (!array_key_exists($id, $categoriesList)) {
+        if (!$category) {
             // abort() stoppe l'execution de la page
             abort(404);
         }
 
-        return response()->json($categoriesList[$id]);
+        return response()->json($category);
     }
 }
