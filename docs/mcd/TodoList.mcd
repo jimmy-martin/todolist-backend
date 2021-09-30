@@ -1,3 +1,3 @@
 TASK: task code, title, completion, status
-is tagges as, 11 TASK, 0N CATEGORY
-CATEGORY: category code, name
+is related to, 11 TASK, 0N CATEGORY
+CATEGORY: category code, name, status
