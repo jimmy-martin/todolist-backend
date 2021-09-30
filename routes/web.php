@@ -62,3 +62,35 @@ $router->get(
         'as'   => 'task-item'
     ]
 );
+
+$router->post(
+    '/tasks',
+    [
+        'uses' => 'TaskController@create',
+        'as'   => 'task-create'
+    ]
+);
+
+$router->put(
+    '/tasks/{id}',
+    [
+        'uses' => 'TaskController@update',
+        'as'   => 'task-update'
+    ]
+);
+
+$router->patch(
+    '/tasks/{id}',
+    [
+        'uses' => 'TaskController@update',
+        'as'   => 'task-edit'
+    ]
+);
+
+$router->delete(
+    '/tasks/{id}',
+    [
+        'uses' => 'TaskController@delete',
+        'as'   => 'task-delete'
+    ]
+);
