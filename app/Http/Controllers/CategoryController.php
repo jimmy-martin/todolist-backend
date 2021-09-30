@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use Symfony\Component\VarDumper\Cloner\Data;
 
 class CategoryController extends Controller
 {
+    /**
+     * List all categories
+     *
+     * @return void
+     */
     public function list()
     {
         // grâce à l'ORM Eloquent, je peux récupérer toutes mes catégories via la méthode all()
@@ -18,6 +22,12 @@ class CategoryController extends Controller
         return response()->json($categoriesList);
     }
 
+    /**
+     * Show one category
+     *
+     * @param integer $id category id
+     * @return void
+     */
     public function item(int $id)
     {
         $category = Category::find($id);
