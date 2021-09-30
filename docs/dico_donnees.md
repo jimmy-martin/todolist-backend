@@ -4,19 +4,20 @@
 
 |Champ|Type|Spécificités|Description|
 |-|-|-|-|
-|id|INT|PRIMARY KEY, NOT NULL, UNSIGNED, AUTO_INCREMENT| Identifiant de notre tâche|
-|name|VARCHAR(64)|NOT NULL|Nom de la tâche|
-|completion|INT|NOT NULL, DEFAULT 0|Niveau d'achèvement de la tâche|
-|status|TINYINT(1)|NOT NULL, UNSIGNED, DEFAULT 0|Statut de la tâche (0=non archivée, 1=archivée)|
-|created_at|TIMESTAMP|NOT NULL, DEFAULT CURRENT_TIMESTAMP|Date de création de la tâche|
-|updated_at|TIMESTAMP|NULL|Date de la dernière mise à jour de la tâche|
-|category|entity|NOT NULL|Catégorie de la tâche|
+|id|INT|PRIMARY KEY, NOT NULL, UNSIGNED, AUTO_INCREMENT|L'identifiant de notre tâche|
+|title|VARCHAR(128)|NOT NULL|Le titre de la tâche|
+|completion|TINYINT|NOT NULL, UNSIGNED, DEFAULT 0|Le pourcentage de completion de la tâche|
+|status|TINYINT|NOT NULL, DEFAULT 1|Le statut de la tâche (1=active, 2=archivée)|
+|created_at|TIMESTAMP|NOT NULL, DEFAULT CURRENT_TIMESTAMP|La date de création de la tâche|
+|updated_at|TIMESTAMP|NULL|La date de la dernière mise à jour de la tâche|
+|category_id|INT|NOT NULL, UNSIGNED|Identifiant de la catégorie de la tâche|
 
 ## Catégories (`categories`)
 
 |Champ|Type|Spécificités|Description|
 |-|-|-|-|
-|id|INT|PRIMARY KEY, NOT NULL, UNSIGNED, AUTO_INCREMENT| Identifiant de la catégorie|
-|name|VARCHAR(64)|NOT NULL|Nom de la catégorie|
-|created_at|TIMESTAMP|NOT NULL, DEFAULT CURRENT_TIMESTAMP|Date de création de la catégorie|
-|updated_at|TIMESTAMP|NULL|Date de la dernière mise à jour de la catégorie|
+|id|INT|PRIMARY KEY, NOT NULL, UNSIGNED, AUTO_INCREMENT|L'identifiant de notre catégorie|
+|name|VARCHAR(64)|NOT NULL|Le nom de la catégorie|
+|status|TINYINT|NOT NULL, DEFAULT 1|Le statut de la catégorie (1=active, 2=désactivée)|
+|created_at|TIMESTAMP|NOT NULL, DEFAULT CURRENT_TIMESTAMP|La date de création de la catégorie|
+|updated_at|TIMESTAMP|NULL|La date de la dernière mise à jour de la catégorie|
