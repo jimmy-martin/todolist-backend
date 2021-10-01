@@ -166,8 +166,13 @@ class TaskController extends Controller
         $task = Task::find($id);
 
         if ($task) {
-            $task->delete();
-            return response()->json('', 204);
+            $result = $task->delete();
+
+            if ($result) {
+                return response()->json('');
+            } else {
+                return response()->json('', 500);
+            }
         }
     }
 }
