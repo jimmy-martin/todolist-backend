@@ -25,6 +25,11 @@ class TaskController extends Controller
      */
     public function item(int $id)
     {
+        $task = Task::find($id);
+
+        if (!$task) {
+            return response()->json('', 404);
+        }
         return response()->json(Task::find($id));
     }
 
@@ -36,28 +41,35 @@ class TaskController extends Controller
      */
     public function create(Request $request)
     {
-        $this->validate($request, [
-            'title'      => 'required|string',
-            'categoryId' => 'required|integer',
-            'completion' => 'integer',
-            'status'     => 'integer'
-        ]);
+        // une façon de valider des données
+        // $this->validate($request, [
+        //     'title'      => 'required|string',
+        //     'categoryId' => 'required|integer',
+        //     'completion' => 'integer',
+        //     'status'     => 'integer'
+        // ]);
 
-        $newTask = new Task();
+        // Autre façon de faire :
+        // On va verifier l'existence d'un champ title et category_id
+        // et qu'elles ne sont pas vides
+        // la méthode filled() vérifie l'existence de la clé et que le contenu n'est pas vide
+        if ($request->filled(['title', 'categoryId'])) {
+            $newTask = new Task();
 
-        $newTask->title = $request->title;
-        $newTask->category_id = $request->categoryId;
-        $newTask->completion = $request->completion;
-        $newTask->status = $request->status;
+            $newTask->title       = $request->input('title');
+            $newTask->category_id = $request->input('categoryId');
+            $newTask->completion  = $request->input('completion', 0);
+            $newTask->status      = $request->input('status', 1);
 
-        $result = $newTask->save();
+            $result = $newTask->save();
 
-        if ($result) {
-            // return response()->json($newTask, 200);
-            abort(201, '201 Created');
+            if ($result) {
+                return response()->json($newTask, 201);
+            } else {
+                return response()->json('', 500);
+            }
         } else {
-            // return response()->json(['error' => '500 Internal Server Error'], 500);
-            abort(500, '500 Internal Server Error');
+            return response()->json('', 400);
         }
     }
 
@@ -92,19 +104,15 @@ class TaskController extends Controller
                     $result = $task->save();
 
                     if ($result) {
-                        // return response()->json($task, 200);
-                        abort(204, '204 No Content');
+                        return response()->json('', 200);
                     } else {
-                        // return response()->json(['error' => '500 Internal Server Error'], 500);
-                        abort(500, '500 Internal Server Error');
+                        return response()->json('', 500);
                     }
                 } else {
-                    // return response()->json(['error' => '404 Not Found'], 404);
-                    abort(404, '404 Not Found');
+                    return response()->json('', 404);
                 }
             } else {
-                // return response()->json(['error' => '400 Bad Request'], 400);
-                abort(400, '400 Bad Request');
+                return response()->json('', 400);
             }
 
             // sinon si ma requete est en PATCH
@@ -128,16 +136,15 @@ class TaskController extends Controller
                     $result = $task->save();
 
                     if ($result) {
-                        // return response()->json($task, 200);
-                        abort(204, '204 No Content');
+                        return response()->json($task, 200);
                     } else {
-                        // return response()->json(['error' => '500 Internal Server Error'], 500);
-                        abort(500, '500 Internal Server Errir');
+                        return response()->json('', 500);
                     }
                 } else {
-                    // return response()->json(['error' => '404 Not Found'], 404);
-                    abort(404, '404 Not Found');
+                    return response()->json('', 404);
                 }
+            } else {
+                return response()->json('', 400);
             }
         }
     }
@@ -152,10 +159,9 @@ class TaskController extends Controller
     {
         $task = Task::find($id);
 
-        if($task){
+        if ($task) {
             $task->delete();
-            // return response()->json($task, 204);
-            abort(204, '204 No Content');
+            return response()->json('', 204);
         }
     }
 }
