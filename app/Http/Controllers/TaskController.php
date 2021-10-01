@@ -14,7 +14,7 @@ class TaskController extends Controller
      */
     public function list()
     {
-        return response()->json(Task::all());
+        return response()->json(Task::all()->load('category'));
     }
 
     /**
