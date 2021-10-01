@@ -69,6 +69,7 @@ class TaskController extends Controller
                 return response()->json('', 500);
             }
         } else {
+            // on renvoie un code 400 pour indiquer qu'il manques des données
             return response()->json('', 400);
         }
     }
@@ -82,70 +83,75 @@ class TaskController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        $this->validate($request, [
-            'title'      => 'string',
-            'categoryId' => 'integer',
-            'completion' => 'integer',
-            'status'     => 'integer'
-        ]);
+        $task = Task::find($id);
 
-        // si ma requête est en PUT
-        if ($request->method() === 'PUT') {
-            // si j'ai toutes mes données
-            if ($request->has(['title', 'categoryId', 'completion', 'status'])) {
-                $task = Task::find($id);
+        if ($task) {
+            if ($request->isMethod('put')) {
+                // si j'ai toutes mes données
+                if ($request->filled(['title', 'categoryId', 'completion', 'status'])) {
 
-                if ($task) {
+
+                    $task->title = $request->input('title');
+                    $task->category_id = $request->input('categoryId');
+                    $task->completion = $request->input('completion');
+                    $task->status = $request->input('status');
+
+                    $result = $task->save();
+
+                    if ($result) {
+                        return response()->json($task);
+                    } else {
+                        return response()->json('', 500);
+                    }
+                } else {
+                    return response()->json('', 400);
+                }
+
+                // sinon si ma requete est en PATCH
+            } else {
+
+                // On aurait pu aussi utiliser cette condition
+                // if ($request->all() >= 1) {}
+
+                // si j'ai au moins une donnée
+                $hasAtLeastOneData = false;
+
+                if ($request->filled('title')) {
+                    $hasAtLeastOneData = true;
                     $task->title = $request->title;
+                }
+
+                if ($request->filled('categoryId')) {
+                    $hasAtLeastOneData = true;
                     $task->category_id = $request->categoryId;
+                }
+
+                if ($request->filled('completion')) {
+                    $hasAtLeastOneData = true;
                     $task->completion = $request->completion;
+                }
+
+                if ($request->filled('status')) {
+                    $hasAtLeastOneData = true;
                     $task->status = $request->status;
+                }
+
+                if ($hasAtLeastOneData) {
+                    $result = $task->save();
 
                     $result = $task->save();
 
                     if ($result) {
-                        return response()->json('', 200);
+                        return response()->json($task);
                     } else {
                         return response()->json('', 500);
                     }
                 } else {
-                    return response()->json('', 404);
+                    return response()->json('', 400);
                 }
-            } else {
-                return response()->json('', 400);
             }
-
-            // sinon si ma requete est en PATCH
-        } else if ($request->method() === 'PATCH') {
-            // si j'ai au moins une donnée
-            if ($request->all() >= 1) {
-
-                $task = Task::find($id);
-
-                if ($task) {
-                    if ($request->has('title')) {
-                        $task->title = $request->title;
-                    } else if ($request->has('categoryId')) {
-                        $task->category_id = $request->categoryId;
-                    } else if ($request->has('completion')) {
-                        $task->completion = $request->completion;
-                    } else {
-                        $task->status = $request->status;
-                    }
-
-                    $result = $task->save();
-
-                    if ($result) {
-                        return response()->json($task, 200);
-                    } else {
-                        return response()->json('', 500);
-                    }
-                } else {
-                    return response()->json('', 404);
-                }
-            } else {
-                return response()->json('', 400);
-            }
+        } else {
+            return response()->json('', 404);
         }
     }
 
