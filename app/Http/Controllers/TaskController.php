@@ -169,10 +169,12 @@ class TaskController extends Controller
             $result = $task->delete();
 
             if ($result) {
-                return response()->json('');
+                return response()->json('', 204);
             } else {
                 return response()->json('', 500);
             }
+        } else {
+            return response()->json('', 404);
         }
     }
 }
